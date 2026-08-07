@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PHOTO TO PDF - 3D Photo to PDF Converter, Editor & Download</title>
+  <meta name="description" content="Free 3D Photo to PDF converter and editor. Convert images to PDF 100% in-browser with zero server uploads, privacy policy guarantees, filters, cropping, and instant download.">
+  <link rel="stylesheet" href="/src/style.css">
+</head>
+<body>
+
+  <!-- Three.js 3D Canvas Background -->
+  <canvas id="bg-3d"></canvas>
+
+  <div id="app-container">
+
+    <!-- Navbar -->
+    <nav class="navbar">
+      <a href="#" class="nav-brand">
+        <div class="brand-icon-3d">
+          <i data-lucide="file-image"></i>
+        </div>
+        <span>PHOTO <span class="text-gradient">TO PDF</span></span>
+      </a>
+
+      <div class="privacy-badge-nav" id="network-privacy-status">
+        <span class="privacy-pulse"></span>
+        <span>100% In-Browser Privacy Mode</span>
+      </div>
+
+      <ul class="nav-links">
+        <li><a href="#studio-section">Studio</a></li>
+        <li><a href="#features-section">Features</a></li>
+        <li><a href="#privacy-section">Security & Privacy</a></li>
+        <li><a href="#faq-section">FAQ</a></li>
+      </ul>
+
+      <div style="display: flex; gap: 0.75rem;">
+        <button class="btn btn-secondary btn-sm" id="btn-open-privacy">
+          <i data-lucide="shield-check"></i> Privacy Policy
+        </button>
+        <a href="#studio-section" class="btn btn-primary btn-sm">
+          <i data-lucide="sparkles"></i> Open Studio
+        </a>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+      <div class="hero-pill">
+        <i data-lucide="lock"></i> 100% Client-Side • Zero Server Uploads
+      </div>
+      <h1 class="hero-title">
+        Convert Photos to PDF <br>
+        <span class="text-gradient">With 3D Speed & Privacy</span>
+      </h1>
+      <p class="hero-subtitle">
+        Transform your images, receipts, documents, and photos into professional PDF files directly inside your browser. Edit, rotate, crop, apply scan filters, reorder, and download instantly.
+      </p>
+
+      <div class="hero-features-list">
+        <div class="hero-feature-item">
+          <i data-lucide="check-circle-2"></i> Free Unlimited Conversion
+        </div>
+        <div class="hero-feature-item">
+          <i data-lucide="check-circle-2"></i> Document Scan Filters
+        </div>
+        <div class="hero-feature-item">
+          <i data-lucide="check-circle-2"></i> Drag & Drop Reordering
+        </div>
+        <div class="hero-feature-item">
+          <i data-lucide="check-circle-2"></i> 100% Private & Offline Ready
+        </div>
+      </div>
+
+      <a href="#studio-section" class="btn btn-primary btn-emerald" style="padding: 0.9rem 2.2rem; font-size: 1.1rem;">
+        <i data-lucide="arrow-down-circle"></i> Convert Photos Now
+      </a>
+    </section>
+
+    <!-- Studio Workbench Section -->
+    <section id="studio-section" style="padding: 0 1rem;">
+      <div class="studio-container" id="studio-card">
+        
+        <!-- Studio Toolbar Header -->
+        <div class="studio-header">
+          <div class="studio-title">
+            <i data-lucide="sliders" style="color: var(--accent-primary);"></i>
+            <h3>PDF Studio Workbench</h3>
+          </div>
+
+          <div class="studio-actions">
+            <button class="btn btn-secondary btn-sm" id="btn-toggle-settings">
+              <i data-lucide="settings"></i> Page Settings
+            </button>
+            <button class="btn btn-secondary btn-sm" id="btn-add-samples">
+              <i data-lucide="sparkles"></i> Try Sample Photos
+            </button>
+            <button class="btn btn-secondary btn-sm" id="btn-clear-all" style="color: #f87171;">
+              <i data-lucide="trash-2"></i> Clear All
+            </button>
+          </div>
+        </div>
+
+        <!-- Global PDF Settings Panel -->
+        <div class="settings-panel" id="settings-panel">
+          <div class="setting-group">
+            <label><i data-lucide="file-text"></i> Page Size</label>
+            <select class="setting-select" id="setting-page-size">
+              <option value="a4" selected>A4 (210 × 297 mm)</option>
+              <option value="letter">US Letter (8.5 × 11 in)</option>
+              <option value="legal">US Legal (8.5 × 14 in)</option>
+              <option value="executive">Executive</option>
+              <option value="fit">Fit to Image Aspect Ratio</option>
+            </select>
+          </div>
+
+          <div class="setting-group">
+            <label><i data-lucide="compass"></i> Orientation</label>
+            <select class="setting-select" id="setting-orientation">
+              <option value="auto" selected>Auto (Per Image)</option>
+              <option value="p">Portrait (Vertical)</option>
+              <option value="l">Landscape (Horizontal)</option>
+            </select>
+          </div>
+
+          <div class="setting-group">
+            <label><i data-lucide="maximize"></i> Margins</label>
+            <select class="setting-select" id="setting-margin">
+              <option value="0">No Margin (0 mm)</option>
+              <option value="5">Small Margin (5 mm)</option>
+              <option value="10" selected>Medium Margin (10 mm)</option>
+              <option value="20">Large Margin (20 mm)</option>
+            </select>
+          </div>
+
+          <div class="setting-group">
+            <label><i data-lucide="layout"></i> Image Fit</label>
+            <select class="setting-select" id="setting-fit-mode">
+              <option value="fit" selected>Fit (Keep Aspect Ratio)</option>
+              <option value="fill">Fill (Crop Page)</option>
+              <option value="stretch">Stretch to Fit</option>
+            </select>
+          </div>
+
+          <div class="setting-group">
+            <label><i data-lucide="gauge"></i> PDF Quality</label>
+            <select class="setting-select" id="setting-quality">
+              <option value="0.6">Low (Small File Size)</option>
+              <option value="0.85" selected>Medium / High Quality</option>
+              <option value="1.0">Original (Best Quality)</option>
+            </select>
+          </div>
+
+          <div class="setting-group">
+            <label><i data-lucide="hash"></i> Page Numbers</label>
+            <select class="setting-select" id="setting-page-num-pos">
+              <option value="bottom-center" selected>Bottom Center</option>
+              <option value="bottom-right">Bottom Right</option>
+              <option value="top-right">Top Right</option>
+              <option value="none">Disabled</option>
+            </select>
+          </div>
+
+          <div class="setting-group">
+            <label><i data-lucide="heading"></i> Header Text</label>
+            <input type="text" class="setting-input" id="setting-header-text" placeholder="e.g. Confidential Document">
+          </div>
+
+          <div class="setting-group">
+            <label><i data-lucide="footprints"></i> Footer Text</label>
+            <input type="text" class="setting-input" id="setting-footer-text" placeholder="e.g. Photo to PDF Export">
+          </div>
+        </div>
+
+        <!-- Dropzone Upload Area -->
+        <div class="dropzone" id="dropzone">
+          <input type="file" id="file-input" multiple accept="image/*" style="display: none;">
+          <div class="dropzone-icon">
+            <i data-lucide="upload-cloud"></i>
+          </div>
+          <h3>Drag & Drop Your Photos Here</h3>
+          <p>Or click to browse from your computer or phone</p>
+          <span class="file-types-tag">Supports JPG, PNG, WEBP, GIF, BMP</span>
+        </div>
+
+        <!-- Photo Grid Header -->
+        <div class="photo-grid-header" id="grid-header" style="display: none;">
+          <div style="display: flex; align-items: center; gap: 0.75rem;">
+            <h4>Photos Workbench</h4>
+            <span class="photo-count-badge" id="photo-count-badge">0 Pages</span>
+          </div>
+
+          <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+            <button class="btn btn-secondary btn-sm" id="btn-rotate-all-left" title="Rotate all left">
+              <i data-lucide="rotate-ccw"></i>
+            </button>
+            <button class="btn btn-secondary btn-sm" id="btn-rotate-all-right" title="Rotate all right">
+              <i data-lucide="rotate-cw"></i>
+            </button>
+            <button class="btn btn-secondary btn-sm" id="btn-scanner-all" title="Apply Scan Filter to all">
+              <i data-lucide="file-check-2"></i> Scan Mode
+            </button>
+            <button class="btn btn-secondary btn-sm" id="btn-add-more">
+              <i data-lucide="plus-circle"></i> Add Photos
+            </button>
+          </div>
+        </div>
+
+        <!-- Photo Thumbnail Reorderable Grid -->
+        <div class="photo-grid" id="photo-grid"></div>
+
+        <!-- Bottom Generate & Export Action Bar -->
+        <div style="display: flex; justify-content: flex-end; gap: 1rem; margin-top: 2rem; border-top: 1px solid var(--border-color); padding-top: 1.5rem;" id="export-bar">
+          <button class="btn btn-secondary" id="btn-preview-pdf">
+            <i data-lucide="eye"></i> Preview PDF
+          </button>
+          <button class="btn btn-primary btn-emerald" id="btn-download-pdf" style="padding: 0.8rem 1.8rem;">
+            <i data-lucide="download"></i> Download PDF
+          </button>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Features Grid Section -->
+    <section class="features-section" id="features-section">
+      <h2 class="section-title">Everything You Need to Convert & Edit</h2>
+      <p class="section-subtitle">A full-featured PDF creation studio right inside your web browser.</p>
+
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i data-lucide="shield-check"></i>
+          </div>
+          <h3>100% Client-Side Privacy</h3>
+          <p>Your photos are converted strictly inside your web browser. No files are uploaded to any server or cloud database.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i data-lucide="wand-2"></i>
+          </div>
+          <h3>Document Scanner Filter</h3>
+          <p>Turn dark or shadowy photo documents into crisp, high-contrast B&W paper scans with single-click scan mode.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i data-lucide="crop"></i>
+          </div>
+          <h3>Crop & Filter Suite</h3>
+          <p>Crop images, adjust brightness and contrast, rotate 90°/180°, and apply vintage or grayscale filters per page.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i data-lucide="move"></i>
+          </div>
+          <h3>Drag & Drop Page Order</h3>
+          <p>Reorder photo pages easily by dragging thumbnails to match your exact document sequencing.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i data-lucide="file-check"></i>
+          </div>
+          <h3>Multiple Page Formats</h3>
+          <p>Choose between A4, US Letter, US Legal, Executive, or original photo aspect ratio for perfect printing.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i data-lucide="wifi-off"></i>
+          </div>
+          <h3>Works 100% Offline</h3>
+          <p>Load the site once and process unlimited photos anywhere without an internet connection.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Privacy Architecture & Policy Section -->
+    <section class="privacy-section" id="privacy-section">
+      <div class="privacy-box">
+        <div class="privacy-header">
+          <div class="privacy-icon-lg">
+            <i data-lucide="lock"></i>
+          </div>
+          <div>
+            <h2>Privacy Policy & Technical Guarantee</h2>
+            <p style="color: var(--text-secondary);">Your documents never leave your computer or phone.</p>
+          </div>
+        </div>
+
+        <p style="color: var(--text-secondary); font-size: 1rem; line-height: 1.7;">
+          Traditional photo to PDF websites upload your sensitive personal documents, IDs, medical bills, and photos to third-party web servers. <strong>PHOTO TO PDF is built differently.</strong> Utilizing client-side JavaScript (`jsPDF` & HTML5 Canvas), all processing is calculated directly by your device's CPU/GPU.
+        </p>
+
+        <div class="privacy-list">
+          <div class="privacy-item">
+            <i data-lucide="check-circle"></i>
+            <div>
+              <h4>Zero Uploads</h4>
+              <p>0 bytes sent to external servers.</p>
+            </div>
+          </div>
+
+          <div class="privacy-item">
+            <i data-lucide="check-circle"></i>
+            <div>
+              <h4>RAM Garbage Collection</h4>
+              <p>Data cleared immediately on page exit.</p>
+            </div>
+          </div>
+
+          <div class="privacy-item">
+            <i data-lucide="check-circle"></i>
+            <div>
+              <h4>GDPR & CCPA Certified</h4>
+              <p>Native compliance with privacy laws.</p>
+            </div>
+          </div>
+        </div>
+
+        <div style="margin-top: 2rem; display: flex; gap: 1rem;">
+          <button class="btn btn-secondary" id="btn-read-full-privacy">
+            <i data-lucide="file-text"></i> Read Full Privacy Policy
+          </button>
+          <button class="btn btn-secondary" id="btn-read-terms">
+            <i data-lucide="scale"></i> Terms of Service
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Accordion Section -->
+    <section class="faq-section" id="faq-section">
+      <h2 class="section-title">Frequently Asked Questions</h2>
+      <p class="section-subtitle">Everything you need to know about PHOTO TO PDF.</p>
+
+      <div class="faq-list">
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>Is PHOTO TO PDF free to use?</span>
+            <i data-lucide="chevron-down" class="faq-icon"></i>
+          </button>
+          <div class="faq-answer">
+            Yes, PHOTO TO PDF is 100% free with no hidden fees, subscriptions, watermark mandates, or page limits.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>Are my photos uploaded to a server?</span>
+            <i data-lucide="chevron-down" class="faq-icon"></i>
+          </button>
+          <div class="faq-answer">
+            No! All photo conversion and editing happen 100% inside your browser using client-side JavaScript. Your files never leave your computer or phone.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>Which photo file formats are supported?</span>
+            <i data-lucide="chevron-down" class="faq-icon"></i>
+          </button>
+          <div class="faq-answer">
+            We support all major web image formats including JPG, JPEG, PNG, WEBP, GIF, and BMP.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>Can I reorder or rotate pages before downloading?</span>
+            <i data-lucide="chevron-down" class="faq-icon"></i>
+          </button>
+          <div class="faq-answer">
+            Yes! You can drag and drop photo cards to reorder pages, rotate individual photos 90°/180°, and apply document scan filters.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div class="footer-content">
+        <a href="#" class="nav-brand">
+          <div class="brand-icon-3d">
+            <i data-lucide="file-image"></i>
+          </div>
+          <span>PHOTO <span class="text-gradient">TO PDF</span></span>
+        </a>
+
+        <div style="display: flex; gap: 1.5rem;">
+          <a href="#studio-section" style="color: var(--text-secondary); text-decoration: none;">Studio</a>
+          <a href="#features-section" style="color: var(--text-secondary); text-decoration: none;">Features</a>
+          <a href="#privacy-section" style="color: var(--text-secondary); text-decoration: none;">Privacy Guarantee</a>
+          <button id="btn-footer-privacy" style="background: none; border: none; color: var(--text-secondary); cursor: pointer;">Privacy Policy</button>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>© 2026 PHOTO TO PDF. Built with 100% Client-Side Privacy Guarantee.</span>
+        <span>Made with 3D WebGL Technology</span>
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- Image Editor Modal -->
+  <div class="modal-backdrop" id="modal-editor">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 class="modal-title"><i data-lucide="sliders"></i> Edit Photo & Filters</h3>
+        <button class="modal-close" id="btn-close-editor"><i data-lucide="x"></i></button>
+      </div>
+
+      <div class="modal-body">
+        <div class="editor-layout">
+          <div class="editor-canvas-container">
+            <canvas id="editor-canvas"></canvas>
+          </div>
+
+          <div class="editor-sidebar">
+            <div style="display: flex; gap: 0.5rem;">
+              <button class="btn btn-secondary btn-sm" id="btn-ed-rot-left"><i data-lucide="rotate-ccw"></i></button>
+              <button class="btn btn-secondary btn-sm" id="btn-ed-rot-right"><i data-lucide="rotate-cw"></i></button>
+            </div>
+
+            <div>
+              <label style="font-size: 0.8rem; font-weight: 600; color: var(--text-secondary); margin-bottom: 0.4rem; display: block;">PRESET FILTERS</label>
+              <div class="filter-grid">
+                <button class="filter-btn active" data-filter="none">Original</button>
+                <button class="filter-btn" data-filter="scanner">Scan B&W</button>
+                <button class="filter-btn" data-filter="grayscale">Grayscale</button>
+                <button class="filter-btn" data-filter="vintage">Vintage</button>
+                <button class="filter-btn" data-filter="warm">Warm</button>
+                <button class="filter-btn" data-filter="cool">Cool</button>
+              </div>
+            </div>
+
+            <div class="slider-group">
+              <label>Brightness <span id="val-brightness">0</span></label>
+              <input type="range" class="slider-input" id="slider-brightness" min="-100" max="100" value="0">
+            </div>
+
+            <div class="slider-group">
+              <label>Contrast <span id="val-contrast">0</span></label>
+              <input type="range" class="slider-input" id="slider-contrast" min="-100" max="100" value="0">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn btn-secondary" id="btn-cancel-editor">Cancel</button>
+        <button class="btn btn-primary btn-emerald" id="btn-save-editor"><i data-lucide="check"></i> Apply Changes</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- PDF Preview Modal -->
+  <div class="modal-backdrop" id="modal-preview">
+    <div class="modal-dialog" style="max-width: 900px; height: 90vh;">
+      <div class="modal-header">
+        <h3 class="modal-title"><i data-lucide="file-check"></i> PDF Document Live Preview</h3>
+        <button class="modal-close" id="btn-close-preview"><i data-lucide="x"></i></button>
+      </div>
+
+      <div class="modal-body" style="padding: 0; display: flex; flex-direction: column;">
+        <div style="padding: 0.75rem 1.25rem; background: rgba(0,0,0,0.3); border-bottom: 1px solid var(--border-color); display: flex; align-items: center; justify-content: space-between;">
+          <input type="text" class="setting-input" id="preview-filename" value="PHOTO_TO_PDF_EXPORT.pdf" style="width: 260px;">
+          <span style="font-size: 0.85rem; color: var(--text-secondary);" id="preview-meta">PDF Document</span>
+        </div>
+
+        <iframe id="pdf-preview-iframe" style="width: 100%; height: 100%; border: none; background: #333;"></iframe>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn btn-secondary" id="btn-print-preview"><i data-lucide="printer"></i> Print</button>
+        <button class="btn btn-primary btn-emerald" id="btn-download-preview"><i data-lucide="download"></i> Download PDF</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Legal / Privacy Modal -->
+  <div class="modal-backdrop" id="modal-privacy">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 class="modal-title"><i data-lucide="shield-check"></i> Legal & Privacy Documentation</h3>
+        <button class="modal-close" id="btn-close-privacy"><i data-lucide="x"></i></button>
+      </div>
+
+      <div class="modal-body" id="privacy-modal-body"></div>
+
+      <div class="modal-footer">
+        <button class="btn btn-primary" id="btn-close-privacy-footer">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toast-container"></div>
+
+  <!-- App Script Entry point -->
+  <script type="module" src="/src/js/app.js"></script>
+</body>
+</html>

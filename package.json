@@ -1,0 +1,26 @@
+{
+  "name": "photo-to-pdf",
+  "version": "1.0.0",
+  "description": "3D Photo to PDF Converter & Editor - 100% Private, Client-Side",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "keywords": [
+    "photo-to-pdf",
+    "pdf-converter",
+    "3d-website",
+    "client-side-privacy"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "canvas-confetti": "^1.9.4",
+    "jspdf": "^4.2.1",
+    "lucide": "^1.29.0",
+    "sortablejs": "^1.15.7",
+    "three": "^0.185.1",
+    "vite": "^8.2.1"
+  }
+}
