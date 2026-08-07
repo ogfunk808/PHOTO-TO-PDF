@@ -55,8 +55,16 @@ export class PrivacyManager {
         <h4>4. GDPR & CCPA Compliance</h4>
         <p>Since we do not collect, process, store, or sell any personal data, PHOTO TO PDF is natively compliant with the European Union General Data Protection Regulation (GDPR) and the California Consumer Privacy Act (CCPA).</p>
 
-        <h4>5. Analytics & Third-Party Cookies</h4>
-        <p>We do NOT use invasive cross-site tracking cookies, third-party advertising trackers, or telemetry scripts that spy on your document content.</p>
+        <h4>5. Google AdSense & Advertising Cookies Policy</h4>
+        <p>This website uses Google AdSense to display advertisements. Please review our third-party advertising cookie policy:</p>
+        <ul style="margin-left: 1.5rem; margin-bottom: 1rem; color: var(--text-secondary); font-size: 0.9rem;">
+          <li>Third party vendors, including Google, use cookies to serve ads based on a user's prior visits to our website or other websites.</li>
+          <li>Google's use of advertising cookies enables it and its partners to serve ads to users based on their visit to our site and/or other sites on the Internet.</li>
+          <li>Users may opt out of personalized advertising by visiting <a href="https://www.google.com/settings/ads" target="_blank" rel="noopener" style="color: var(--accent-cyan);">Google Ads Settings</a> or <a href="https://www.aboutads.info" target="_blank" rel="noopener" style="color: var(--accent-cyan);">aboutads.info</a>.</li>
+        </ul>
+
+        <h4>6. Contact Us</h4>
+        <p>If you have any questions or feedback regarding this Privacy Policy, contact us at: <a href="mailto:ogfunk808@gmail.com" style="color: var(--accent-cyan);">ogfunk808@gmail.com</a></p>
       </div>
     `;
   }
@@ -75,6 +83,9 @@ export class PrivacyManager {
 
         <h4>3. Disclaimer of Warranty</h4>
         <p>The application is provided "AS IS" without warranties of any kind. All processing is executed client-side in your environment.</p>
+
+        <h4>4. Contact</h4>
+        <p>Support contact: <a href="mailto:ogfunk808@gmail.com" style="color: var(--accent-cyan);">ogfunk808@gmail.com</a></p>
       </div>
     `;
   }
