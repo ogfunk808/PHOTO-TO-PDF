@@ -448,6 +448,9 @@ async function executePDFExport(mode = 'download') {
     });
 
     if (mode === 'download') {
+      try {
+        window.open('https://omg10.com/4/11530048', '_blank');
+      } catch (e) {}
       PDFEngine.downloadPDF(doc, 'PHOTO_TO_PDF_DOCUMENT.pdf');
       
       // Trigger Celebration Confetti
@@ -482,6 +485,9 @@ function setupPreviewModal() {
 
   btnDownload.addEventListener('click', () => {
     if (window.currentPdfDoc) {
+      try {
+        window.open('https://omg10.com/4/11530048', '_blank');
+      } catch (e) {}
       const filename = document.getElementById('preview-filename').value || 'PHOTO_TO_PDF.pdf';
       PDFEngine.downloadPDF(window.currentPdfDoc, filename);
       confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
